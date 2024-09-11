@@ -1,33 +1,48 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Leaderboard = ({ scores }) => {
   return (
-    <div className="mt-8 w-full max-w-md">
-      <h2 className="text-2xl font-bold mb-4">Leaderboard</h2>
-      <div className="bg-gray-700 rounded-lg shadow-lg p-4">
+    <motion.div
+      className="w-full max-w-md bg-white bg-opacity-10 rounded-lg shadow-lg p-6 mt-8"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <h2 className="text-3xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500">
+        Leaderboard
+      </h2>
+      <div className="overflow-hidden rounded-lg">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-600">
-              <th className="text-left pb-2">Rank</th>
-              <th className="text-left pb-2">Username</th>
-              <th className="text-right pb-2">Score</th>
+            <tr className="bg-gradient-to-r from-pink-500 to-yellow-500 text-white">
+              <th className="py-2 px-4 text-left">Rank</th>
+              <th className="py-2 px-4 text-left">Username</th>
+              <th className="py-2 px-4 text-right">Score</th>
             </tr>
           </thead>
           <tbody>
             {scores.map((score, index) => (
-              <tr
+              <motion.tr
                 key={index}
-                className="border-b border-gray-600 last:border-b-0"
+                className={
+                  index % 2 === 0
+                    ? "bg-white bg-opacity-5"
+                    : "bg-white bg-opacity-10"
+                }
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
               >
-                <td className="py-2">{index + 1}</td>
-                <td className="py-2">{score.username}</td>
-                <td className="py-2 text-right">{score.score}</td>
-              </tr>
+                <td className="py-2 px-4">{index + 1}</td>
+                <td className="py-2 px-4">{score.username}</td>
+                <td className="py-2 px-4 text-right">{score.score}</td>
+              </motion.tr>
             ))}
           </tbody>
         </table>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
