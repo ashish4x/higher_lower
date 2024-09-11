@@ -1,3 +1,3 @@
 A simple game of higher or lower with a leaderboard
 
-https://www.guesshighlow.vercel.app/
+https://guesshighlow.vercel.app/
